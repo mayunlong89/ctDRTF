@@ -7,7 +7,7 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 This computational framework has been done and applied in the bioRvix 2023.
 
 # scHOB Database
-scHOB (single-cell Human Organoid Bank) is a multi-omic single-cell database that consists of both scRNA-seq and scATAC-seq data on 10 kinds of widely-adopted human organoids (i.e., brain, lung, heart, eye, liver & bile duct, pancreas, intestine, kidney, and skin) spanning 1,366,380 cells with 67 main cell types in 385 samples across 83 distinct protocols. see github [Link](https://github.com/mayunlong89/scHOB/tree/main)  see Website [link](https://schob.su-lab.org/)
+scHOB (single-cell Human Organoid Bank) is a multi-omic single-cell database that consists of both scRNA-seq and scATAC-seq data on 10 kinds of widely-adopted human organoids (i.e., brain, lung, heart, eye, liver & bile duct, pancreas, intestine, kidney, and skin) spanning 1,366,380 cells with 67 main cell types in 385 samples across 83 distinct protocols. see github [Link](https://github.com/mayunlong89/scHOB/tree/main); see Website [link](https://schob.su-lab.org/).
 
 # Citation
 Ma et al. Integrated analysis of single-cell transcriptomic and epigenomic atlas of organoids uncovers core regulomes of human diseases. bioRvix, 2023
