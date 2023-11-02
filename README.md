@@ -6,3 +6,5 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 
 This computational framework has been done and applied in the bioRvix 2023.
 
+# Citation
+Ma et al. Integrated analysis of single-cell transcriptomic and epigenomic atlas of organoids uncovers core regulomes of human diseases. bioRvix, 2023
