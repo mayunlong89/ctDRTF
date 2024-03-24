@@ -8,7 +8,8 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 
 
 #Step one
-`#@ 1) Constructing global TF-gene regulatory network
-#single_cell: the input single-cell data--Seurat object.
-#n_genes: the minimum number of genes in a given regulon`
+##@ 1) Constructing global TF-gene regulatory network
+##single_cell: the input single-cell data--Seurat object.
+##n_genes: the minimum number of genes in a given regulon`
 
+`GRN_func(single_cell = single_cell,n_genes=n_genes)`
