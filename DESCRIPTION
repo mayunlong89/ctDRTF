@@ -1,0 +1,39 @@
+Package: ctDRTF
+Type: Package
+Title: Cell-Type-specific Disease-Relevant Transcription Factor (ctDRTF)
+Version: 1.0.1
+Author: Yunlong Ma
+Maintainer: The package maintainer <yunlong.ma@pennmedicine.upenn.edu>
+Description: .
+License: MIT+ file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown=TRUE)
+Roxygen2: file.edit("DESCRIPTION")
+RoxygenNote: 7.2.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    tidygraph,
+    patchwork,
+    scales,
+    ggrepel,
+    grDevices,
+    RColorBrewer,
+    FactoMineR,
+    ggdendro,
+    grImport2,
+    rhdf5,
+    tidyverse
+Config/testthat/edition: 3
+Imports: 
+    SeuratObject,
+    Seurat,
+    Pando,
+    ArchR,
+    COSG,
+    ggplot2,
+VignetteBuilder: knitr
+Depends: 
+    R (>= 4.0.0)
