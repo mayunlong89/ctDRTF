@@ -113,6 +113,37 @@ MAGMA_GWAS_data <- magma_results[,c(10,11)]
 ```
 #For more detailed codes on MAGMA tool, please refer to [here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
 
+### Example format
+
+```
+1) Single-cell data
+
+The input format of single-cell data: Seurat-generated S4 object.
+
+ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool.
+
+2) MAGMA-result data (i.e., MAGMA_GWAS_data)
+
+                SYMBOL      logP
+1             HIST1H4L 37.543330
+2                 DPYD 22.758030
+3             HIST1H3I 21.643210
+4               CACNB2 17.592524
+5              CACNA1C 17.534141
+6             PPP1R16B 17.196147
+7             HIST1H4A 17.139482
+8                 TCF4 16.818929
+9               SFMBT1 16.348761
+10               SFTA2 15.954599
+
+````
+
+
+
+
+
+
+
 
 
 
