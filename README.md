@@ -7,7 +7,7 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 ![Workflow](https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)
 
 
-# Main Function of ctDRTF
+## Main Function of ctDRTF
 #main function
 #single_cell: the input single-cell data.
 #n_genes: the minimum number of genes in a given regulon 
