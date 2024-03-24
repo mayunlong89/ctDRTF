@@ -18,7 +18,7 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 
 ```
 
-ctdf_main_func (single_cell = single_cell,
+ctdf_main_func(single_cell = single_cell,
                 MAGMA_GWAS_data = MAGMA_GWAS_data,
                 n_genes= 10,
                 Gene_num = 500,
