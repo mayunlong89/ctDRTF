@@ -16,12 +16,20 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 #MC_num: Set 100 times of running MC_JSI_score_func()
 #theta range from 0 ~ 1, default set to 0.5
 
-`ctdf_main_func (single_cell = single_cell,
+```
+
+
+ctdf_main_func (single_cell = single_cell,
                 MAGMA_GWAS_data = MAGMA_GWAS_data,
                 n_genes= 10,
                 Gene_num = 500,
                 MC_num = 100,
-                theta=0.5)`
+                theta=0.5)
+
+
+```
+
+# Critical function of ctDRTF                
 ```
 # Step 1
 ##@ 1) Constructing global TF-gene regulatory network
