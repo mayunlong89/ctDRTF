@@ -7,6 +7,21 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 ![Workflow](https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)
 
 
+# Main Function of ctDRTF
+#main function
+#single_cell: the input single-cell data.
+#n_genes: the minimum number of genes in a given regulon 
+#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
+#Gene_num: The number of disease-specific genes, default set to 500
+#MC_num: Set 100 times of running MC_JSI_score_func()
+#theta range from 0 ~ 1, default set to 0.5
+ctdf_main_func (single_cell = single_cell,
+                MAGMA_GWAS_data = MAGMA_GWAS_data,
+                n_genes= 10,
+                Gene_num = 500,
+                MC_num = 100,
+                theta=0.5)
+
 # Step 1
 ##@ 1) Constructing global TF-gene regulatory network
 ##single_cell: the input single-cell data--Seurat object.
@@ -37,6 +52,22 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
           MC_num = 100,
           Gene_num=500,
           theta=0.5)`
+
+# Step 4
+#@ 4) Calculating the P value for each regulon-disease link
+#MC Function
+#data_s1_sub: The input of matrix containing the specificity score of genes in each cell type
+#tf_left: All the high-qualified TFs that passed the quality control
+#tf_left_1 <- tf_left[which(tf_left!=tf_left[j])] #removing the targeted TF as controls
+#len_of_regulon = length(M1_regulon), the number of genes and TFs in a given regulon
+#all_genes: All genes from phenotype-associations based on MAGMA,ie.,length(MAGMA_GWAS_data$SYMBOL)
+#Gene_num: The number of disease-specific genes, default set to 500
+
+`MC_JSI_score_func(data_s1_sub = data_s1_sub,
+                             tf_left_1 = tf_left_1,
+                             len_of_regulon = len_of_regulon,
+                             all_genes = all_genes, 
+                             Gene_num = 500)`
 
 
 
