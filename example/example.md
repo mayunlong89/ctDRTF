@@ -58,4 +58,3 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 
 ````
 
-### Citation
