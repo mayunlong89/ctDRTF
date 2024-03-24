@@ -8,13 +8,13 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 
 
 ## Main Function of ctDRTF
-#main function
-#single_cell: the input single-cell data.
-#n_genes: the minimum number of genes in a given regulon 
-#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
-#Gene_num: The number of disease-specific genes, default set to 500
-#MC_num: Set 100 times of running MC_JSI_score_func()
-#theta range from 0 ~ 1, default set to 0.5
+#main function:
+#single_cell: the input single-cell data; 
+#n_genes: the minimum number of genes in a given regulon; 
+#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P); 
+#Gene_num: The number of disease-specific genes, default set to 500; 
+#MC_num: Set 100 times of running MC_JSI_score_func(); 
+#theta range from 0 ~ 1, default set to 0.5.
 
 ```
 
