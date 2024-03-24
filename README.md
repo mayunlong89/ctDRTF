@@ -147,6 +147,8 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 
 ````
 
+### Citation
+Ma et al., Unveiling cell type-specific transcriptional regulomes from single-cell transcriptomic and epigenomic atlas of human organoids, medRvix, 2024
 
 
 
