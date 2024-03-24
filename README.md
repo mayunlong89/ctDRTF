@@ -7,9 +7,46 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 ![Workflow](https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)
 
 
-#Step one
-##@ 1) Constructing global TF-gene regulatory network
-##single_cell: the input single-cell data--Seurat object.
-##n_genes: the minimum number of genes in a given regulon`
+# Step 1
+## @ 1) Constructing global TF-gene regulatory network
+## single_cell: the input single-cell data--Seurat object.
+## n_genes: the minimum number of genes in a given regulon`
 
 `GRN_func(single_cell = single_cell,n_genes=n_genes)`
+
+# Step 2
+## @ 2) Calculating specificity scores
+## single_cell is the input single-cell data.
+## num_genes <- length(rownames(single_cell))
+
+`COSR_pre_func(single_cell=single_cell)`
+
+# Step 3
+## @ 3) Identifying cell type-specific regulons relevant to disease
+## MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
+## data_regulons1: TF-gene pairs matrix
+## tf_left: all tf names
+## MC_num: Set 100 times of running MC_JSI_score_func()
+## data_s1: matrix of genes and TFs specificity scores across cell types
+## theta range from 0 ~ 1, default set to 0.5
+
+`COSR_func(tf_left=tf_left,
+          data_s1=data_s1,
+          data_regulons1=data_regulons1,
+          MAGMA_GWAS_data = MAGMA_GWAS_data,
+          MC_num = 100,
+          Gene_num=500,
+          theta=0.5)`
+
+
+
+
+
+
+
+
+
+
+
+
+
