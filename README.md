@@ -16,26 +16,26 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 #MC_num: Set 100 times of running MC_JSI_score_func()
 #theta range from 0 ~ 1, default set to 0.5
 
-```ctdf_main_func (single_cell = single_cell,
+`ctdf_main_func (single_cell = single_cell,
                 MAGMA_GWAS_data = MAGMA_GWAS_data,
                 n_genes= 10,
                 Gene_num = 500,
                 MC_num = 100,
-                theta=0.5)```
-
+                theta=0.5)`
+```
 # Step 1
 ##@ 1) Constructing global TF-gene regulatory network
 ##single_cell: the input single-cell data--Seurat object.
 ##n_genes: the minimum number of genes in a given regulon`
 
-`GRN_func(single_cell = single_cell,n_genes=n_genes)`
+GRN_func(single_cell = single_cell,n_genes=n_genes)
 
 # Step 2
 ##@ 2) Calculating specificity scores
 ##single_cell is the input single-cell data.
 ##num_genes <- length(rownames(single_cell))
 
-`COSR_pre_func(single_cell=single_cell)`
+COSR_pre_func(single_cell=single_cell)
 
 # Step 3
 ##@ 3) Identifying cell type-specific regulons relevant to disease
@@ -46,13 +46,13 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 ##data_s1: matrix of genes and TFs specificity scores across cell types
 ##theta range from 0 ~ 1, default set to 0.5
 
-`COSR_func(tf_left=tf_left,
+COSR_func(tf_left=tf_left,
           data_s1=data_s1,
           data_regulons1=data_regulons1,
           MAGMA_GWAS_data = MAGMA_GWAS_data,
           MC_num = 100,
           Gene_num=500,
-          theta=0.5)`
+          theta=0.5)
 
 # Step 4
 #@ 4) Calculating the P value for each regulon-disease link
@@ -64,13 +64,13 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 #all_genes: All genes from phenotype-associations based on MAGMA,ie.,length(MAGMA_GWAS_data$SYMBOL)
 #Gene_num: The number of disease-specific genes, default set to 500
 
-`MC_JSI_score_func(data_s1_sub = data_s1_sub,
+MC_JSI_score_func(data_s1_sub = data_s1_sub,
                              tf_left_1 = tf_left_1,
                              len_of_regulon = len_of_regulon,
                              all_genes = all_genes, 
-                             Gene_num = 500)`
+                             Gene_num = 500)
 
-
+```
 
 
 
