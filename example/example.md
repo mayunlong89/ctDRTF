@@ -1,3 +1,27 @@
+
+# How to run example using ctDRTF
+
+```
+#Single-cell multi-omic data on pbmc_10x (Illumina Official Website)
+single_cell <- readRDS("pbmc_10x_example.rds")
+
+#MAGMA-based gene-based analysis of GWAS on monocyte count (UKBiobank ID:ieu-b-31)
+magma_example <- readRDS("magma_example.rds")
+
+#running ctDRTF
+data_example <- ctdf_main_func(single_cell = single_cell,
+                               MAGMA_GWAS_data = magma_example,
+                               n_genes = 10,
+                               Gene_num = 500,
+                               MC_num=100,
+                               theta=0.5)
+
+```
+
+
+
+
+
 ### Generate MAGMA-based gene set
 
 ```
