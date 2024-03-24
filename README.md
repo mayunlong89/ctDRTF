@@ -82,7 +82,6 @@ MC_JSI_score_func(data_s1_sub = data_s1_sub,
 
 ```
 1) MAGMA codes for generating disease-relevant genes
-#For more detailed information on MAGMA tool, please refer to ![here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
 
 #DIRECTORY
 export MAGMA_DIR=/share/pub/mayl/MAGMA
@@ -110,7 +109,7 @@ $MAGMA_DIR/magma \
 
 
 ```
-
+#For more detailed information on MAGMA tool, please refer to ![here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
 
 
 
