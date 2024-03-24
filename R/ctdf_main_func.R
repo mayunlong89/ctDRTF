@@ -19,9 +19,9 @@ ctdf_main_func <- function(single_cell = single_cell,
    
   #1) Constructing global TF-gene regulatory network
 
-  grn_outs <- GRN_func(single_cell,n_genes = n_genes)
+  grn_outputs <- GRN_func(single_cell,n_genes = n_genes)
   
-  grn_outputs <- list(grn=data_regulons1,tf_names = tf_left)
+  #grn_outputs <- list(grn=grn_outs$data_regulons1,tf_names = grn_outs$tf_left)
   
 
   #2) Calculating specicity scores
