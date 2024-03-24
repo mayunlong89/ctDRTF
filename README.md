@@ -18,14 +18,12 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 
 ```
 
-
 ctdf_main_func (single_cell = single_cell,
                 MAGMA_GWAS_data = MAGMA_GWAS_data,
                 n_genes= 10,
                 Gene_num = 500,
                 MC_num = 100,
                 theta=0.5)
-
 
 ```
 
@@ -80,8 +78,38 @@ MC_JSI_score_func(data_s1_sub = data_s1_sub,
 
 ```
 
+# Generate MAGMA-based gene set
+
+```
+1) MAGMA codes for generating disease-relevant genes
+#For more detailed information on MAGMA tool, please refer to ![here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
+
+#DIRECTORY
+export MAGMA_DIR=/share/pub/mayl/MAGMA
+export DATA=/share/pub/mayl/MAGMA_test
+export OUTPUT=/share/pub/mayl/MAGMA_test
+
+#MAGMA annotation:
+
+$MAGMA_DIR/magma \
+    --snp-loc  $DATA/GWAS_UKBiobank_summary_final.hg19.location  \
+    --annotate window=20,20 --gene-loc $MAGMA_DIR/NCBI37.3.gene.loc \
+    --out $OUTPUT/GWAS_UKBiobank_summary_final.hg19_SNP_Gene_annotation  
+
+#gene-based association analysi:
+$MAGMA_DIR/magma \
+    --bfile $MAGMA_DIR/1000G_data/g1000_eur \
+    --pval $DATA/GWAS_UKBiobank_summary_final.results_Pval \
+    N=13239 \
+    --gene-annot   $OUTPUT/GWAS_UKBiobank_summary_final.hg19_SNP_Gene_annotation.genes.annot  \
+    --out $OUTPUT/GWAS_UKBiobank_summary_final.hg19_SNP_Gene_Analysis_P
 
 
+2) 
+
+
+
+```
 
 
 
