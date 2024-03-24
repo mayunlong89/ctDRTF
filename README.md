@@ -3,4 +3,4 @@ A computational method for identifying cell type-specific transcription factor r
 
 
 
-[Workflow](https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)
+![Workflow](https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)
