@@ -1,5 +1,5 @@
 # ctDRTF
-A computational method for identifying cell type-specific transcription factor relevant to complex diseases
+A computational method for identifying cell type-specific transcription factor relevant to complex disease.
 
 
 We assume that if GWAS-identified disease-specific genes are concordantly activated in a cell type-specific TF-regulon, then the TF is more likely to have a pivotal role in disease via the given cell type. Thus, we design a computational framework ctDRTF (cell type-specific Disease-Relevant Transcription Factor) for performing regulatory network-based inference of the associations between TF-related regulons and disease-specific gene sets in a context-specific manner. The input of scDRTF includes multimodal matrix of both scRNA-seq and scATAC-seq data, and GWAS summary data for a quantitative trait or disease (case-control study). 
@@ -7,7 +7,16 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 ![Workflow](https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)
 
 
-## Main Function of ctDRTF
+# Installing ctDRTF
+We recommend installing ctDRTF via github using devtools:
+
+```
+library(devtools)
+install_github("mayunlong89/ctDRTF")
+```
+See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
+
+## How to run ctDRTF
 #main function:
 #single_cell: the input single-cell data; 
 #n_genes: the minimum number of genes in a given regulon; 
@@ -27,7 +36,7 @@ ctdf_main_func(single_cell = single_cell,
 
 ```
 
-### Critical function of ctDRTF                
+### The ctDRTF pipeline             
 ```
 # Step 1
 ##@ 1) Constructing global TF-gene regulatory network
@@ -112,6 +121,39 @@ MAGMA_GWAS_data <- magma_results[,c(10,11)]
 
 ```
 #For more detailed codes on MAGMA tool, please refer to [here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
+
+### Example format
+
+```
+1) Single-cell data
+
+The input format of single-cell data: Seurat-generated S4 object.
+
+ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool.
+
+2) MAGMA-result data (i.e., MAGMA_GWAS_data)
+
+                SYMBOL      logP
+1             HIST1H4L 37.543330
+2                 DPYD 22.758030
+3             HIST1H3I 21.643210
+4               CACNB2 17.592524
+5              CACNA1C 17.534141
+6             PPP1R16B 17.196147
+7             HIST1H4A 17.139482
+8                 TCF4 16.818929
+9               SFMBT1 16.348761
+10               SFTA2 15.954599
+
+````
+
+### Citation
+Ma et al., Unveiling cell type-specific transcriptional regulomes from single-cell transcriptomic and epigenomic atlas of human organoids, medRvix, 2024
+
+
+
+
+
 
 
 
