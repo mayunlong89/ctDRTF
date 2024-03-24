@@ -27,7 +27,7 @@ ctdf_main_func (single_cell = single_cell,
 
 ```
 
-# Critical function of ctDRTF                
+### Critical function of ctDRTF                
 ```
 # Step 1
 ##@ 1) Constructing global TF-gene regulatory network
@@ -78,7 +78,7 @@ MC_JSI_score_func(data_s1_sub = data_s1_sub,
 
 ```
 
-# Generate MAGMA-based gene set
+### Generate MAGMA-based gene set
 
 ```
 1) MAGMA codes for generating disease-relevant genes
