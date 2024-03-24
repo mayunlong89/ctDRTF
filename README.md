@@ -104,12 +104,14 @@ $MAGMA_DIR/magma \
     --out $OUTPUT/GWAS_UKBiobank_summary_final.hg19_SNP_Gene_Analysis_P
 
 
-2) 
-
+2) Processing MAGMA-results: 'magma.genes.out'
+magma_results <- read.table("magma.genes.out",header = TRUE)
+magma_results <- magma_results %>% mutate(logP = -log10(P)) %>% arrange(desc(logP))
+MAGMA_GWAS_data <- magma_results[,c(10,11)]
 
 
 ```
-#For more detailed information on MAGMA tool, please refer to [here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
+#For more detailed codes on MAGMA tool, please refer to [here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
 
 
 
