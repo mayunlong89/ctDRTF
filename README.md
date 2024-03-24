@@ -9,14 +9,14 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 
 # Installing ctDRTF
 We recommend installing ctDRTF via github using devtools:
+
 ```
 library(devtools)
 install_github("mayunlong89/ctDRTF")
-
 ```
+See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
 
-
-## Main Function of ctDRTF
+## How to run ctDRTF
 #main function:
 #single_cell: the input single-cell data; 
 #n_genes: the minimum number of genes in a given regulon; 
@@ -36,7 +36,7 @@ ctdf_main_func(single_cell = single_cell,
 
 ```
 
-### Critical function of ctDRTF                
+### The ctDRTF pipeline             
 ```
 # Step 1
 ##@ 1) Constructing global TF-gene regulatory network
