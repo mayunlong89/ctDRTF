@@ -109,7 +109,7 @@ $MAGMA_DIR/magma \
 
 
 ```
-#For more detailed information on MAGMA tool, please refer to ![here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
+#For more detailed information on MAGMA tool, please refer to [here](https://cloufield.github.io/GWASTutorial/09_Gene_based_analysis/)
 
 
 
