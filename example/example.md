@@ -22,6 +22,7 @@ data_example <- ctdf_main_func(single_cell = single_cell,
 ## Assigning cell types to single-cell data
 
 ```
+
 Idents(single_cell) <- single_cell$cell_type
 
 ```
