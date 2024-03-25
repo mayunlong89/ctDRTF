@@ -68,7 +68,8 @@ COSR_func <- function(tf_left=tf_left,
       data_s1_sub <- data_s1[which(data_s1[,3] == all_celltype_names[i]),]
       #extracting the specificity score of each regulon
       data_s_M1 <- data_s1_sub[!is.na(match(data_s1_sub[,1], M1_regulon)),]
-      data_s_M1$anno <- rep("Gene",n_num,length(data_s_M1[,1]))
+      #data_s_M1$anno <- rep("Gene",n_num,length(data_s_M1[,1]))
+      data_s_M1$anno <- rep("Gene", length(data_s_M1[,1]))
       data_s_M1$anno[which(data_s_M1[,1] == M1_regulon[1])] <- "TF"
       
       #Calculating the module specificity score for each regulon

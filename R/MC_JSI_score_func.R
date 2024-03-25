@@ -18,7 +18,8 @@ MC_JSI_score_func<- function(data_s1_sub = data_s1_sub,
                              tf_left_1 = tf_left_1,
                              len_of_regulon = len_of_regulon,
                              all_genes = all_genes, 
-                             Gene_num = 500){
+                             Gene_num = 500,
+                             theta=0.5){
 
   #Selecting one TF
   select_tf <- sample(tf_left_1,1)
