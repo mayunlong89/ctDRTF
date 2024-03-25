@@ -90,6 +90,7 @@ MC_JSI_score_func(data_s1_sub = data_s1_sub,
 ## Assigning cell types to single-cell data
 
 ```
+
 Idents(single_cell) <- single_cell$cell_type
 
 ```
