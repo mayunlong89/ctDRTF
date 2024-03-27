@@ -62,7 +62,7 @@ COSR_func <- function(tf_left=tf_left,
     
   }
   
-  data_regulons1 <- max_min_scale(data_regulons1)
+  data_s1 <- max_min_scale(data_s1)
   
   
   #COSR and JSI interaction analysis
