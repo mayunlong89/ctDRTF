@@ -43,7 +43,7 @@ COSR_pre_func <- function(single_cell = single_cell){
   }
   
   #If specificity score = -1, transforming -1 to 0
-  data_s1[,2][which(data_s1[,2] == -1)] <- 0
+  #data_s1[,2][which(data_s1[,2] == -1)] <- 0
   
   return(data_s1)
 

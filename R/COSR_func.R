@@ -53,6 +53,18 @@ COSR_func <- function(tf_left=tf_left,
   pb <- txtProgressBar(style=3)
   start_time <- Sys.time() ##record start time
      
+  # description a function for max-min normalization for specificity score
+  max_min_scale <- function(x){
+    
+    scale_vec <- (x-min(x))/(max(x)-min(x))
+    
+    return(scale_vec)
+    
+  }
+  
+  data_regulons1 <- max_min_scale(data_regulons1)
+  
+  
   #COSR and JSI interaction analysis
   for (i in 1:length(all_celltype_names)){
     regulon_ct_score <- c()
