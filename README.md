@@ -17,22 +17,24 @@ install_github("mayunlong89/ctDRTF")
 See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
 
 ## How to run ctDRTF
-#main function:
-#single_cell: the input single-cell data; 
-#n_genes: the minimum number of genes in a given regulon; 
-#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P); 
-#Gene_num: The number of disease-specific genes, default set to 500; 
-#MC_num: Set 100 times of running MC_JSI_score_func(); 
+#main function
+#single_cell: the input single-cell data.
+#n_genes: the minimum number of genes in a given regulon.
+#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P).
+#Gene_num: The number of disease-specific genes, default set to 500.
+#MC_num: Set 100 times of running MC_JSI_score_func().
 #theta range from 0 ~ 1, default set to 0.5.
+#mode: default "weight", alternatively, "none"; This parameter is used the z-score of each gene from magma as weight.
 
 ```
 
-ctdf_main_func(single_cell = single_cell,
-                MAGMA_GWAS_data = MAGMA_GWAS_data,
-                n_genes= 10,
-                Gene_num = 500,
-                MC_num = 100,
-                theta=0.5)
+ctdf_main_func <- function(single_cell = single_cell,
+                           MAGMA_GWAS_data = MAGMA_GWAS_data,
+                           n_genes= 10,
+                           Gene_num = 500,
+                           MC_num = 1000,
+                           theta=0.5,
+                           mode="weight")
 
 ```
 
@@ -57,15 +59,25 @@ COSR_pre_func(single_cell=single_cell)
 ##MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
 ##data_regulons1: TF-gene pairs matrix
 ##tf_left: all tf names
-##MC_num: Set 100 times of running MC_JSI_score_func()
+##MC_num: Set 1000 times of running MC_JSI_score_func()
 ##data_s1: matrix of genes and TFs specificity scores across cell types
 ##theta range from 0 ~ 1, default set to 0.5
 
+#mode 1
+COSR_func_weight <- function(tf_left=tf_left,
+                      data_s1=data_s1,
+                      data_regulons1=data_regulons1,
+                      MAGMA_GWAS_data = MAGMA_GWAS_data,
+                      MC_num = 1000,
+                      Gene_num=500,
+                      theta=0.5)
+
+#mode 2
 COSR_func(tf_left=tf_left,
           data_s1=data_s1,
           data_regulons1=data_regulons1,
           MAGMA_GWAS_data = MAGMA_GWAS_data,
-          MC_num = 100,
+          MC_num = 1000,
           Gene_num=500,
           theta=0.5)
 
