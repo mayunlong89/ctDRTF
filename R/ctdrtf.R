@@ -12,7 +12,7 @@
 #theta range from 0 ~ 1, default set to 0.5
 #mode: default "weight", alternatively, "none"; This parameter is used the z-score of each gene from magma as weight
 
-ctdf_main_func <- function(single_cell = single_cell,
+ctdrtf <- function(single_cell = single_cell,
                            MAGMA_GWAS_data = MAGMA_GWAS_data,
                            n_genes= 10,
                            Gene_num = 500,
