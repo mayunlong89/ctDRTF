@@ -17,22 +17,24 @@ install_github("mayunlong89/ctDRTF")
 See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
 
 ## How to run ctDRTF
-#main function:
-#single_cell: the input single-cell data; 
-#n_genes: the minimum number of genes in a given regulon; 
-#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P); 
-#Gene_num: The number of disease-specific genes, default set to 500; 
-#MC_num: Set 100 times of running MC_JSI_score_func(); 
+#main function
+#single_cell: the input single-cell data.
+#n_genes: the minimum number of genes in a given regulon.
+#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P).
+#Gene_num: The number of disease-specific genes, default set to 500.
+#MC_num: Set 100 times of running MC_JSI_score_func().
 #theta range from 0 ~ 1, default set to 0.5.
+#mode: default "weight", alternatively, "none"; This parameter is used the z-score of each gene from magma as weight.
 
 ```
 
-ctdf_main_func(single_cell = single_cell,
-                MAGMA_GWAS_data = MAGMA_GWAS_data,
-                n_genes= 10,
-                Gene_num = 500,
-                MC_num = 100,
-                theta=0.5)
+ctdf_main_func <- function(single_cell = single_cell,
+                           MAGMA_GWAS_data = MAGMA_GWAS_data,
+                           n_genes= 10,
+                           Gene_num = 500,
+                           MC_num = 1000,
+                           theta=0.5,
+                           mode="weight")
 
 ```
 
@@ -57,15 +59,25 @@ COSR_pre_func(single_cell=single_cell)
 ##MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
 ##data_regulons1: TF-gene pairs matrix
 ##tf_left: all tf names
-##MC_num: Set 100 times of running MC_JSI_score_func()
+##MC_num: Set 1000 times of running MC_JSI_score_func()
 ##data_s1: matrix of genes and TFs specificity scores across cell types
 ##theta range from 0 ~ 1, default set to 0.5
 
+#mode 1
+COSR_func_weight <- function(tf_left=tf_left,
+                      data_s1=data_s1,
+                      data_regulons1=data_regulons1,
+                      MAGMA_GWAS_data = MAGMA_GWAS_data,
+                      MC_num = 1000,
+                      Gene_num=500,
+                      theta=0.5)
+
+#mode 2
 COSR_func(tf_left=tf_left,
           data_s1=data_s1,
           data_regulons1=data_regulons1,
           MAGMA_GWAS_data = MAGMA_GWAS_data,
-          MC_num = 100,
+          MC_num = 1000,
           Gene_num=500,
           theta=0.5)
 
@@ -122,9 +134,12 @@ $MAGMA_DIR/magma \
 
 
 2) Processing MAGMA-results: 'magma.genes.out'
+#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
+#header of MAGMA_GWAS_data: SYMBOL, logP, ZSTAT
+
 magma_results <- read.table("magma.genes.out",header = TRUE)
 magma_results <- magma_results %>% mutate(logP = -log10(P)) %>% arrange(desc(logP))
-MAGMA_GWAS_data <- magma_results[,c(10,11)]
+MAGMA_GWAS_data <- magma_results[,c(10,11,8)]
 
 
 ```
@@ -139,19 +154,16 @@ The input format of single-cell data: Seurat-generated S4 object.
 
 ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool.
 
+
 2) MAGMA-result data (i.e., MAGMA_GWAS_data)
 
-                SYMBOL      logP
-1             HIST1H4L 37.543330
-2                 DPYD 22.758030
-3             HIST1H3I 21.643210
-4               CACNB2 17.592524
-5              CACNA1C 17.534141
-6             PPP1R16B 17.196147
-7             HIST1H4A 17.139482
-8                 TCF4 16.818929
-9               SFMBT1 16.348761
-10               SFTA2 15.954599
+  SYMBOL      logP  ZSTAT
+1     PON1 10.899319 6.6721
+2     PON2  8.570943 5.8352
+3     PON3  4.386613 3.9381
+4 CDKN2AIP  4.130850 3.7944
+5     CASR  4.083372 3.7672
+6     ASB4  3.919446 3.6719
 
 ````
 
