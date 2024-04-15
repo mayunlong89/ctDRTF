@@ -51,7 +51,6 @@ ctdf_main_func <- function(single_cell = single_cell,
     break
     
   }
-  
 
   #4) Outputs
   return(final_results)

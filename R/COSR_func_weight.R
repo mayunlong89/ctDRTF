@@ -1,12 +1,17 @@
 
-#@ 2023-11-03
+#@ 2024-04-15
 #@ Author: Yunlong Ma
 #@ E-mail: glb-biotech@zju.edu.cn
 
 
 #@ 3) Identifying cell type-specific regulons relevant to disease
 
+#magma result processing
+#magma_results <- magma_results %>% mutate(logP = -log10(P)) %>% arrange(desc(logP))
+#MAGMA_GWAS_data <- magma_results[,c(10,11,8)]
 #MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
+#header of MAGMA_GWAS_data: SYMBOL, logP, ZSTAT
+
 #data_regulons1: TF-gene pairs matrix
 #tf_left: all tf names
 #MC_num: Set 1000 times of running MC_JSI_score_func()
@@ -15,7 +20,7 @@
 COSR_func_weight <- function(tf_left=tf_left,
                       data_s1=data_s1,
                       data_regulons1=data_regulons1,
-                      MAGMA_GWAS_data = magma_results,
+                      MAGMA_GWAS_data = MAGMA_GWAS_data,
                       MC_num = 1000,
                       Gene_num=500,
                       theta=0.5){
@@ -53,9 +58,6 @@ COSR_func_weight <- function(tf_left=tf_left,
   pb <- txtProgressBar(style=3)
   start_time <- Sys.time() ##record start time
      
-  magma_results <- magma_results %>% mutate(logP = -log10(P)) %>% arrange(desc(logP))
-  MAGMA_GWAS_data <- magma_results[,c(10,11,8)]
-  
   #COSR and JSI interaction analysis
   for (i in 1:length(all_celltype_names)){
     regulon_ct_score <- c()
