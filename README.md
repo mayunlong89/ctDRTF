@@ -122,6 +122,12 @@ $MAGMA_DIR/magma \
 
 
 2) Processing MAGMA-results: 'magma.genes.out'
+#magma result processing
+#magma_results <- magma_results %>% mutate(logP = -log10(P)) %>% arrange(desc(logP))
+#MAGMA_GWAS_data <- magma_results[,c(10,11,8)]
+#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
+#header of MAGMA_GWAS_data: SYMBOL, logP, ZSTAT
+
 magma_results <- read.table("magma.genes.out",header = TRUE)
 magma_results <- magma_results %>% mutate(logP = -log10(P)) %>% arrange(desc(logP))
 MAGMA_GWAS_data <- magma_results[,c(10,11)]
@@ -138,6 +144,7 @@ MAGMA_GWAS_data <- magma_results[,c(10,11)]
 The input format of single-cell data: Seurat-generated S4 object.
 
 ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool.
+
 
 2) MAGMA-result data (i.e., MAGMA_GWAS_data)
 
