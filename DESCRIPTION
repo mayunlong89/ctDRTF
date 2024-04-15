@@ -1,7 +1,7 @@
 Package: ctDRTF
 Type: Package
 Title: Cell-Type-specific Disease-Relevant Transcription Factor (ctDRTF)
-Version: 1.0.1
+Version: 1.2.0
 Author: Yunlong Ma
 Maintainer: The package maintainer <yunlong.ma@pennmedicine.upenn.edu>
 Description: .
