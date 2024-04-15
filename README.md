@@ -28,7 +28,7 @@ See the DESCRIPTION file for a complete list of R dependencies. If the R depende
 
 ```
 
-ctdf_main_func <- function(single_cell = single_cell,
+ctdrtf <- function(single_cell = single_cell,
                            MAGMA_GWAS_data = MAGMA_GWAS_data,
                            n_genes= 10,
                            Gene_num = 500,
