@@ -96,11 +96,11 @@ COSR_func_weight <- function(tf_left=tf_left,
       #data_s_M1$magma_zscore <- MAGMA_GWAS_data$ZSTAT[which(MAGMA_GWAS_data$SYMBOL %in% data_s_M1$genes)]
       
       #Calculating the module specificity score for TF in each regulon
-      tf_s_z <- data_s_M1[,c(2,5)][which(data_s_M1[,1] == M1_regulon[1]),]
+      tf_s_z <- data_s_M1[,c(2,4)][which(data_s_M1[,1] == M1_regulon[1]),]
       tf_w <- as.numeric(tf_s_z[1]*tf_s_z[2])
       
       #Calculating the module specificity score for genes in each regulon
-      gene_s_z <- data_s_M1[,c(2,5)][which(data_s_M1[,1] != M1_regulon[1]),]
+      gene_s_z <- data_s_M1[,c(2,4)][which(data_s_M1[,1] != M1_regulon[1]),]
       gene_w <- as.numeric(gene_s_z[,1]*gene_s_z[,2])
       ave_s <- mean(gene_w)
       
