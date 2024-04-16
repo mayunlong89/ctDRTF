@@ -17,6 +17,7 @@
 #MC_num: Set 1000 times of running MC_JSI_score_func()
 #data_s1: matrix of genes and TFs specificity scores across cell types
 #theta range from 0 ~ 1, default set to 0.5
+
 COSR_func_weight <- function(tf_left=tf_left,
                       data_s1=data_s1,
                       data_regulons1=data_regulons1,
@@ -100,12 +101,12 @@ COSR_func_weight <- function(tf_left=tf_left,
       
       #Calculating the module specificity score for genes in each regulon
       gene_s_z <- data_s_M1[,c(2,5)][which(data_s_M1[,1] != M1_regulon[1]),]
-      gene_w <- gene_s_z[,1]*gene_s_z[,2]
+      gene_w <- as.numeric(gene_s_z[,1]*gene_s_z[,2])
       ave_s <- mean(gene_w)
       
       
       #theta = 0.5  #theta range from 0 ~ 1, default set to 0.5
-      regulon_s <- tf_w + theta*ave_s #regulon-specific score for each cell type
+      regulon_s <- as.numeric(tf_w) + as.numeric(theta*ave_s) #regulon-specific score for each cell type
       
       #Sum
       regulon_s_all <- c(regulon_s_all,regulon_s)

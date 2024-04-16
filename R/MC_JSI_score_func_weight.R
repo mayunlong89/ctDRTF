@@ -40,7 +40,7 @@ MC_JSI_score_func_weight<- function(data_s1_sub = data_s1_sub,
   tf_s_sample_w <- as.numeric(tf_s_sample[1]*tf_s_sample[2])
    
   #Calculating the module specificity score for genes in each regulon
-  ave_s_sample <- mean(sample_data[,2]*sample_data[,4])
+  ave_s_sample <- mean(as.numeric(sample_data[,2]*sample_data[,4]))
   
   #Calculating the module specificity score
   regulon_s_sample <- tf_s_sample_w + theta*ave_s_sample
