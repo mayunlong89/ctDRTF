@@ -12,6 +12,8 @@
 #len_of_regulon = length(M1_regulon), the number of genes and TFs in a given regulon
 #all_genes: All genes from phenotype-associations based on MAGMA,ie.,length(MAGMA_GWAS_data$SYMBOL)
 #Gene_num: The number of disease-specific genes, default set to 500
+#mi: expand the specificity difference between cell types
+#mode=1 indicates use magma-based z-scores as weights; mode=0 indicates no weights
 
 #@ Random-based specificity*JSI score for each regulon
 MC_JSI_score_func_weight<- function(data_s1_sub = data_s1_sub,
@@ -19,7 +21,9 @@ MC_JSI_score_func_weight<- function(data_s1_sub = data_s1_sub,
                              len_of_regulon = len_of_regulon,
                              all_genes = all_genes, 
                              Gene_num = 500,
-                             theta=0.5){
+                             theta=0.5,
+                             mi=2,
+                             mode=1){
   
   #Selecting one TF
   select_tf <- sample(tf_left_1,1)
@@ -31,16 +35,21 @@ MC_JSI_score_func_weight<- function(data_s1_sub = data_s1_sub,
   order_id <- sample(all_id,len_of_regulon_removing_one)
   sample_data <- data_s1_sub2[order_id,]
   
-  
   #Curating one selected TF and genes for a random regulon
   regulon_genes_sample <- c(select_tf,sample_data$genes)
   
+  ##choose analysis mode: mode=1 using magma-derived z-score for genetic weights; alternatively, mode=0 with weights
+  ni = mode
+  
   #Calculating the TF and targeting genes specificity score
+  #tf_s_sample <- data_s1_sub[,c("adj_score","magma_zscore")][which(data_s1_sub$genes==select_tf),]
   tf_s_sample <- data_s1_sub[,c("scores","magma_zscore")][which(data_s1_sub$genes==select_tf),]
-  tf_s_sample_w <- as.numeric(tf_s_sample[1]*tf_s_sample[2])
+  
+  tf_s_sample_w <- as.numeric((tf_s_sample[1])^mi*(tf_s_sample[2])^ni)
    
   #Calculating the module specificity score for genes in each regulon
-  ave_s_sample <- mean(as.numeric(sample_data[,2]*sample_data[,4]))
+  #ave_s_sample <- mean(as.numeric(sample_data[,"adj_score"]*sample_data[,"magma_zscore"]))
+  ave_s_sample <- mean(as.numeric((sample_data[,"scores"])^mi*(sample_data[,"magma_zscore"])^ni))
   
   #Calculating the module specificity score
   regulon_s_sample <- tf_s_sample_w + theta*ave_s_sample
@@ -54,7 +63,7 @@ MC_JSI_score_func_weight<- function(data_s1_sub = data_s1_sub,
   JSI_sample <- inter_genes/union_genes  
   
   #Interaction: specificity*JSI for each regulon-disease link
-  ct_score_sample <- regulon_s_sample*JSI_sample 
+  ct_score_sample <- regulon_s_sample*JSI_sample
   
   return(ct_score_sample)  
   

@@ -17,6 +17,8 @@
 #MC_num: Set 1000 times of running MC_JSI_score_func()
 #data_s1: matrix of genes and TFs specificity scores across cell types
 #theta range from 0 ~ 1, default set to 0.5
+#mi: expand the specificity difference between cell types,default set to 2
+#mode=1 indicates use magma-based z-scores as weights; mode=0 indicates no weights
 
 COSR_func_weight <- function(tf_left=tf_left,
                       data_s1=data_s1,
@@ -24,7 +26,9 @@ COSR_func_weight <- function(tf_left=tf_left,
                       MAGMA_GWAS_data = MAGMA_GWAS_data,
                       MC_num = 1000,
                       Gene_num=500,
-                      theta=0.5){
+                      theta=0.5,
+                      mi=2,
+                      mode=1){
   
   #Name all regulons
   regulon_names <- data.frame(paste(tf_left,"_regulon",sep = ""))
@@ -49,6 +53,31 @@ COSR_func_weight <- function(tf_left=tf_left,
   #Obtain all names of the cell types
   all_celltype_names <- unique(data_s1[,3])
   
+  
+  #max-min scaling the specificity score
+
+  for (m in all_celltype_names ){
+    
+    data_s1$scores[which(data_s1$celltypes == m)] <- max_min_scale(data_s1$scores[which(data_s1$celltypes == m)])
+    
+  }
+
+  #Adjusted the other cell types
+  #gene_list <- unique(data_s1$genes)
+  
+  #adj_score_all <- c()
+  #for (x in 1:length(data_s1$genes)) {
+  #temp_score <- data_s1[x,]$scores
+  #sum_score <- sum(data_s1$scores[which(data_s1$genes==data_s1[x,]$genes)])
+  #adj_score <- (temp_score+1)/(sum_score+1)
+    
+  #adj_score_all <- c(adj_score_all,adj_score)
+  #}
+  
+  #collect all the adjusted specificity score
+  data_s1$adj_score <- adj_score_all
+  
+
    "
    Using the COSR method to calculate the specificity scores (S) of TF-regulons;
 
@@ -59,12 +88,15 @@ COSR_func_weight <- function(tf_left=tf_left,
   pb <- txtProgressBar(style=3)
   start_time <- Sys.time() ##record start time
      
+  
+  total_run <- length(all_celltype_names)*length(tf_left)
+  count <- 0
   #COSR and JSI interaction analysis
   for (i in 1:length(all_celltype_names)){
     regulon_ct_score <- c()
     regulon_ct_mc_p <- c()
     regulon_s_all <-c()
-    #p <- 0
+ 
     for (j in 1:length(tf_left)){
       
       #extracting the gene list of each regulon
@@ -81,6 +113,7 @@ COSR_func_weight <- function(tf_left=tf_left,
       #overlap data_s1 regulon genes with magma genes
       data_s1_sub<- data_s1_sub[which(data_s1_sub$genes %in%temp$SYMBOL),]
       
+      #match() function 
       #data_set for all regulon genes specificity and z scores
       data_s1_sub$magma_zscore <- temp$ZSTAT[match(data_s1_sub$genes, temp$SYMBOL )]
       
@@ -95,13 +128,18 @@ COSR_func_weight <- function(tf_left=tf_left,
       #data_s_M1<- data_s_M1[which(data_s_M1$genes %in% MAGMA_GWAS_data$SYMBOL),]
       #data_s_M1$magma_zscore <- MAGMA_GWAS_data$ZSTAT[which(MAGMA_GWAS_data$SYMBOL %in% data_s_M1$genes)]
       
+      ##choose analysis mode
+      ni = mode
+      
       #Calculating the module specificity score for TF in each regulon
-      tf_s_z <- data_s_M1[,c(2,4)][which(data_s_M1[,1] == M1_regulon[1]),]
-      tf_w <- as.numeric(tf_s_z[1]*tf_s_z[2])
+      #tf_s_z <- data_s_M1[,c("adj_score","magma_zscore")][which(data_s_M1[,1] == M1_regulon[1]),]
+      tf_s_z <- data_s_M1[,c("scores","magma_zscore")][which(data_s_M1[,1] == M1_regulon[1]),]
+      tf_w <- as.numeric((tf_s_z[1])^mi*(tf_s_z[2])^ni)
       
       #Calculating the module specificity score for genes in each regulon
-      gene_s_z <- data_s_M1[,c(2,4)][which(data_s_M1[,1] != M1_regulon[1]),]
-      gene_w <- as.numeric(gene_s_z[,1]*gene_s_z[,2])
+      #gene_s_z <- data_s_M1[,c("adj_score","magma_zscore")][which(data_s_M1[,1] != M1_regulon[1]),]
+      gene_s_z <- data_s_M1[,c("scores","magma_zscore")][which(data_s_M1[,1] != M1_regulon[1]),]
+      gene_w <- as.numeric((gene_s_z[,1])^mi*(gene_s_z[,2])^ni)
       ave_s <- mean(gene_w)
       
       
@@ -130,28 +168,32 @@ COSR_func_weight <- function(tf_left=tf_left,
                                                        tf_left_1, 
                                                        len_of_regulon,
                                                        all_genes,
-                                                       Gene_num))
+                                                       Gene_num,
+                                                       mi))
       
       #Calculating the MC p-values
       MC_p <- (1+length(MC_results[MC_results>ct_score]))/(1+length(MC_results))
       
+
       #Running
       print(paste("Running the regulon of ",tf_left[j], " for the cell type of ",all_celltype_names[i],sep = ""))
+
       #Running percent:
-      #p=p+1
-      #print(paste("Finished percent: ",p/length(tf_left)))
+      count=count+1
+      completed_percent <- count/total_run
+      print(sprintf('Completed percent: %1.2f%%',100*completed_percent))
+      #Real-time progress bar
+      #print(paste("Runing percent: ",percent((i+j)/(length(all_celltype_names)*length(tf_left))),sep = ""))
+      setTxtProgressBar(pb,(count)/total_run)
       
-      
+
       #Saving results
       regulon_ct_score <- c(regulon_ct_score,ct_score)
       regulon_ct_mc_p <- c(regulon_ct_mc_p,MC_p)
       
 
     }
-    #Real-time progress bar
-    #print(paste("Runing percent: ",percent((i+j)/(length(all_celltype_names)*length(tf_left))),sep = ""))
-    setTxtProgressBar(pb,(i+j)/(length(all_celltype_names)*length(tf_left)))
-    
+
     #Collecting specificity scores
     regulon_s_all<- as.data.frame(regulon_s_all)
     names(regulon_s_all) <- all_celltype_names[i]
@@ -161,7 +203,6 @@ COSR_func_weight <- function(tf_left=tf_left,
     regulon_ct_mc_p<- as.data.frame(regulon_ct_mc_p)
     names(regulon_ct_mc_p) <- all_celltype_names[i]
     Final_regulon_ct_mc_p <- cbind(Final_regulon_ct_mc_p,regulon_ct_mc_p)
-    
     
     #Normalization
     regulon_ct_score_norm <- (regulon_ct_score-mean(regulon_ct_score))/sd(regulon_ct_score)
@@ -186,7 +227,8 @@ COSR_func_weight <- function(tf_left=tf_left,
   
   #Calculating the running time
   run_time <- end_time - start_time
-
+  print(paste("Running time: ",run_time),sep = "")
+  
   #Outputs
   out_results <- list(ctDRTF_score = Final_regulon_ct_score, 
                         MC_p = Final_regulon_ct_mc_p,
@@ -195,6 +237,7 @@ COSR_func_weight <- function(tf_left=tf_left,
  return(out_results)
 
 }
+
 
 
 

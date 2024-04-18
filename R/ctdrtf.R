@@ -16,9 +16,10 @@
 #n_genes: the minimum number of genes in a given regulon 
 #MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
 #Gene_num: The number of disease-specific genes, default set to 500
-#MC_num: Set 100 times of running MC_JSI_score_func()
+#MC_num: Set 100 times of Monte Carlo simulation
 #theta range from 0 ~ 1, default set to 0.5
-#mode: default "weight", alternatively, "none"; This parameter is used the z-score of each gene from magma as weight
+#mi: expand the specificity difference between cell types,default set to 2
+#mode=1 indicates use magma-based z-scores as weights; mode=0 indicates no weights
 
 ctdrtf <- function(single_cell = single_cell,
                            MAGMA_GWAS_data = MAGMA_GWAS_data,
@@ -26,7 +27,8 @@ ctdrtf <- function(single_cell = single_cell,
                            Gene_num = 500,
                            MC_num = 1000,
                            theta=0.5,
-                           mode="weight"){
+                           mi=2,
+                           mode=1){
    
   #1) Constructing global TF-gene regulatory network
 
@@ -40,25 +42,11 @@ ctdrtf <- function(single_cell = single_cell,
   
   #3) Identifying cell type-specific regulons relevant to disease
   
-  if (mode=="weight"){
     
-    final_results <- COSR_func_weight(tf_left=grn_outputs$tf_names,
+  final_results <- COSR_func_weight(tf_left=grn_outputs$tf_names,
                                       data_s1=data_s1,
                                       data_regulons1=grn_outputs$grn,
                                       MAGMA_GWAS_data = MAGMA_GWAS_data)
-  } else if (mode == "none"){
-    
-    final_results <- COSR_func(tf_left=grn_outputs$tf_names,
-                               data_s1=data_s1,
-                               data_regulons1=grn_outputs$grn,
-                               MAGMA_GWAS_data = MAGMA_GWAS_data)
-    
-  } else {
-    
-    print("need to select a 'mode' for analysis")
-    break
-    
-  }
 
   #4) Outputs
   return(final_results)
