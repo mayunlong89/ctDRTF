@@ -1,5 +1,5 @@
 
-#@ 2024-04-15 v1.2.0
+## 2024-04-15 v1.2.0
 
 ####---------------------
 #@ 2024-03-15 v1.1.1
@@ -11,15 +11,16 @@
 #@ E-mail: glb-biotech@zju.edu.cn
 #@ E-mail: yunlong.ma@pennmedicine.upenn.edu
 
-#main function
-#single_cell: the input single-cell data.
-#n_genes: the minimum number of genes in a given regulon 
-#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
-#Gene_num: The number of disease-specific genes, default set to 500
-#MC_num: Set 100 times of Monte Carlo simulation
-#theta range from 0 ~ 1, default set to 0.5
-#mi: expand the specificity difference between cell types,default set to 2
-#mode=1 indicates use magma-based z-scores as weights; mode=0 indicates no weights
+#@' main function
+#@' single_cell: the input single-cell data.
+#@' n_genes: the minimum number of genes in a given regulon 
+#@' MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
+#@' MAGMA_GWAS_data header: SYMBOL, logP, ZSTAT
+#@' Gene_num: The number of disease-specific genes, default set to 500
+#@' MC_num: Set 100 times of Monte Carlo simulation
+#@' theta range from 0.1 ~ 1, default set to 0.5
+#@' mi (power): expand the specificity difference between cell types,default set to 1
+#@' mode: mo=1 indicates use magma-based z-scores as weights; mo=0 indicates no weights
 
 ctdrtf <- function(single_cell = single_cell,
                            MAGMA_GWAS_data = MAGMA_GWAS_data,
@@ -27,8 +28,8 @@ ctdrtf <- function(single_cell = single_cell,
                            Gene_num = 500,
                            MC_num = 1000,
                            theta=0.5,
-                           mi=2,
-                           mode=1){
+                           mi=1,
+                           mo=1){
    
   #1) Constructing global TF-gene regulatory network
 
