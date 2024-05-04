@@ -165,7 +165,7 @@ COSR_func_weight <- function(tf_left=tf_left,
       regulon_s_all <- c(regulon_s_all,regulon_s)
       
       #Calculating the Jaccard Similarity Index (JSI)
-      top_genes <- MAGMA_GWAS_data$SYMBOL[1:500]
+      top_genes <- MAGMA_GWAS_data$SYMBOL[1:Gene_num]
       inter_genes1 <- length(intersect(top_genes,M1_regulon))
       union_genes1 <- length(union(top_genes,M1_regulon))
       JSI1 <- inter_genes1/union_genes1 # Jaccard similarity index
