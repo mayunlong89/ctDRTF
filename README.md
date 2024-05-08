@@ -10,7 +10,7 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 # Installing ctDRTF
 We recommend installing ctDRTF via github using devtools:
 
-```
+```r
 
 library(devtools)
 install_github("mayunlong89/ctDRTF")
@@ -28,7 +28,7 @@ See the DESCRIPTION file for a complete list of R dependencies. If the R depende
 #theta range from 0 ~ 1, default set to 0.5.
 #mode: default "weight", alternatively, "none"; This parameter is used the z-score of each gene from magma as weight.
 
-```
+```r
 
 ctdrtf <- function(single_cell = single_cell,
                            MAGMA_GWAS_data = MAGMA_GWAS_data,
@@ -54,7 +54,7 @@ ctdrtf <- function(single_cell = single_cell,
 
 
 ### The ctDRTF pipeline             
-```
+```r
 # Step 1
 ##@ 1) Constructing global TF-gene regulatory network
 ##single_cell: the input single-cell data--Seurat object.
@@ -116,7 +116,7 @@ MC_JSI_score_func(data_s1_sub = data_s1_sub,
 
 ## Assigning cell types to single-cell data
 
-```
+```r
 
 Idents(single_cell) <- single_cell$cell_type
 
@@ -124,7 +124,7 @@ Idents(single_cell) <- single_cell$cell_type
 
 ### Generate MAGMA-based gene set
 
-```
+```shell
 1) MAGMA codes for generating disease-relevant genes
 
 #DIRECTORY
