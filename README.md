@@ -1,5 +1,5 @@
 # ctDRTF
-A computational method for identifying cell type-specific transcription factor relevant to complex disease.
+A computational method for identifying cell type-specific transcription factor-regulatory programs relevant to complex disease.
 
 ![logo](https://github.com/mayunlong89/ctDRTF/blob/main/example/figure/Picture2.png)
 
