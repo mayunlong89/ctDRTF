@@ -11,8 +11,10 @@ We assume that if GWAS-identified disease-specific genes are concordantly activa
 We recommend installing ctDRTF via github using devtools:
 
 ```
+
 library(devtools)
 install_github("mayunlong89/ctDRTF")
+
 ```
 See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
 
@@ -37,6 +39,24 @@ ctdrtf <- function(single_cell = single_cell,
                            mode="weight")
 
 ```
+
+```
+
+| Function                           | Description                                                                                                                 |
+|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `sccomp_estimate`                  | Fit the model onto the data, and estimate the coefficients                                                                  |
+| `sccomp_remove_outliers`           | Identify outliers probabilistically based on the model fit, and exclude them from the estimation                            |
+| `sccomp_test`                      | Calculate the probability that the coefficients are outside the H0 interval (i.e. test_composition_above_logit_fold_change) |
+| `sccomp_replicate`                 | Simulate data from the model, or part of the model                                                                          |
+| `sccomp_predict`                   | Predicts proportions, based on the mode, or part of the model                                                               |
+| `sccomp_remove_unwanted_variation` | Removes the variability for unwanted factors                                                                                |
+| `plot`                             | Plors summary plots to asses significance                                                                                   |
+
+
+
+
+
+
 
 ### The ctDRTF pipeline             
 ```
