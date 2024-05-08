@@ -40,7 +40,6 @@ ctdrtf <- function(single_cell = single_cell,
 
 ```
 
-```
 
 | Function                           | Description                                                                                                                 |
 |------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
@@ -51,10 +50,6 @@ ctdrtf <- function(single_cell = single_cell,
 | `sccomp_predict`                   | Predicts proportions, based on the mode, or part of the model                                                               |
 | `sccomp_remove_unwanted_variation` | Removes the variability for unwanted factors                                                                                |
 | `plot`                             | Plors summary plots to asses significance                                                                                   |
-
-
-
-
 
 
 
