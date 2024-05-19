@@ -1,5 +1,5 @@
 # ctDRTF
-A computational method for identifying cell type-specific transcription factor-regulatory programs relevant to complex disease.
+A network-based polygenic enrichment method for identifying cell type-specific transcription factor-regulatory programs relevant to complex diseases.
 
 ![logo](https://github.com/mayunlong89/ctDRTF/blob/main/example/figure/Picture2.png)
 
@@ -20,37 +20,40 @@ install_github("mayunlong89/ctDRTF")
 See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
 
 ## How to run ctDRTF
-#main function
-#single_cell: the input single-cell data.
-#n_genes: the minimum number of genes in a given regulon.
-#MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P).
-#Gene_num: The number of disease-specific genes, default set to 500.
-#MC_num: Set 100 times of running MC_JSI_score_func().
-#theta range from 0 ~ 1, default set to 0.5.
-#mode: default "weight", alternatively, "none"; This parameter is used the z-score of each gene from magma as weight.
+#@' main function
+#@' single_cell: the input single-cell data.
+#@' n_genes: the minimum number of genes in a given regulon 
+#@' MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
+#@' MAGMA_GWAS_data header: SYMBOL, logP, ZSTAT
+#@' Gene_num: The number of disease-specific genes, default set to 500
+#@' MC_num: Set 100 times of Monte Carlo simulation
+#@' theta range from 0.1 ~ 1, default set to 0.5
+#@' mi (power): expand the specificity difference between cell types,default set to 1
+#@' mode: mo=1 indicates use magma-based z-scores as weights; mo=0 indicates no weights
 
 ```r
 
 ctdrtf <- function(single_cell = single_cell,
-                           MAGMA_GWAS_data = MAGMA_GWAS_data,
-                           n_genes= 10,
-                           Gene_num = 500,
-                           MC_num = 1000,
-                           theta=0.5,
-                           mode="weight")
+                   MAGMA_GWAS_data = MAGMA_GWAS_data,
+                   n_genes= 10,
+                   Gene_num = 500,
+                   MC_num = 1000,
+                   theta=0.5,
+                   mi=1,
+                   mo=1)
 
 ```
 
 
 | Function                           | Description                                                                                                                 |
 |------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| `sccomp_estimate`                  | Fit the model onto the data, and estimate the coefficients                                                                  |
-| `sccomp_remove_outliers`           | Identify outliers probabilistically based on the model fit, and exclude them from the estimation                            |
-| `sccomp_test`                      | Calculate the probability that the coefficients are outside the H0 interval (i.e. test_composition_above_logit_fold_change) |
-| `sccomp_replicate`                 | Simulate data from the model, or part of the model                                                                          |
-| `sccomp_predict`                   | Predicts proportions, based on the mode, or part of the model                                                               |
-| `sccomp_remove_unwanted_variation` | Removes the variability for unwanted factors                                                                                |
-| `plot`                             | Plors summary plots to asses significance                                                                                   |
+| `ctdrtf()`                         | The main function to fit the model for identification of cell type-specific regulons relevant to complex diseases           |
+| `GRN_func()`                       | Construct global TF-gene regulotory network depended on the Pando framework                                                 |
+| `COSR_pre_func()`                  | Calculate the cell type-level specificity score of each gene or TF using the cosine similarity algorithm                    |
+| `COSR_func_weight()`               | Identify cell type-specific regulons relevant to disease using polygenic enrichment method                                  |
+| `MC_JSI_score_func_weight()`       | Calculate the empirical P value for each regulon-disease association using Monote Carlo permutation algorithm               |
+| `max_min_scale()`                  | Scale the specificity score between 0 and 1 across all cells                                                                |
+
 
 
 
@@ -71,47 +74,54 @@ GRN_func(single_cell = single_cell,n_genes=n_genes)
 COSR_pre_func(single_cell=single_cell)
 
 # Step 3
-##@ 3) Identifying cell type-specific regulons relevant to disease
-##MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
-##data_regulons1: TF-gene pairs matrix
-##tf_left: all tf names
-##MC_num: Set 1000 times of running MC_JSI_score_func()
-##data_s1: matrix of genes and TFs specificity scores across cell types
-##theta range from 0 ~ 1, default set to 0.5
+@' 3) Identifying cell type-specific regulons relevant to disease
+#@' magma result processing
+#@' magma_results <- magma_results %>% mutate(logP = -log10(P)) %>% arrange(desc(logP))
+#@' MAGMA_GWAS_data <- magma_results[,c(10,11,8)]
+#@' MAGMA_GWAS_data: all MAGMA-based associations results ranked by -log10(P)
+#@' MAGMA_GWAS_data header: SYMBOL, logP, ZSTAT
+#@' data_regulons1: TF-gene pairs matrix
+#@' tf_left: all tf names
+#@' MC_num: Set 1000 times of running MC_JSI_score_func()
+#@' data_s1: matrix of genes and TFs specificity scores across cell types
+#@' theta range from 0.1 ~ 1, default set to 0.5
+#@' mi(power): expand the specificity difference between cell types, default set to 1
+#@' mode: mo=1 indicates use magma-based z-scores as weights; mo=0 indicates no weights
 
-#mode 1
 COSR_func_weight <- function(tf_left=tf_left,
                       data_s1=data_s1,
                       data_regulons1=data_regulons1,
                       MAGMA_GWAS_data = MAGMA_GWAS_data,
                       MC_num = 1000,
                       Gene_num=500,
-                      theta=0.5)
+                      theta=0.5,
+                      mi=1,
+                      mo=1)
 
-#mode 2
-COSR_func(tf_left=tf_left,
-          data_s1=data_s1,
-          data_regulons1=data_regulons1,
-          MAGMA_GWAS_data = MAGMA_GWAS_data,
-          MC_num = 1000,
-          Gene_num=500,
-          theta=0.5)
 
 # Step 4
-#@ 4) Calculating the P value for each regulon-disease link
-#MC Function
-#data_s1_sub: The input of matrix containing the specificity score of genes in each cell type
-#tf_left: All the high-qualified TFs that passed the quality control
-#tf_left_1 <- tf_left[which(tf_left!=tf_left[j])] #removing the targeted TF as controls
-#len_of_regulon = length(M1_regulon), the number of genes and TFs in a given regulon
-#all_genes: All genes from phenotype-associations based on MAGMA,ie.,length(MAGMA_GWAS_data$SYMBOL)
-#Gene_num: The number of disease-specific genes, default set to 500
+#@ 4) Calculating the empirical P value for each regulon-disease association
+#@' MC Function
+#@' data_s1_sub: The input of matrix containing the specificity score of genes in each cell type
+#@' tf_left: All the high-qualified TFs that passed the quality control
+#@' tf_left_1 <- tf_left[which(tf_left!=tf_left[j])] #removing the targeted TF as controls
+#@' len_of_regulon = length(M1_regulon), the number of genes and TFs in a given regulon
+#@' all_genes: All genes from phenotype-associations based on MAGMA,ie.,length(MAGMA_GWAS_data$SYMBOL)
+#@' MAGMA_GWAS_data header: SYMBOL, logP, ZSTAT
+#@' Gene_num: The number of disease-specific genes, default set to 500
+#@' theta range from 0.1 ~ 1, default set to 0.5
+#@' mi (power): expand the specificity difference between cell types,default set to 1
+#@' mode: mo=1 indicates use magma-based z-scores as weights; mo=0 indicates no weights
+#@' Random-based specificity*JSI score for each regulon
 
-MC_JSI_score_func(data_s1_sub = data_s1_sub,
-                             tf_left_1 = tf_left_1,
-                             len_of_regulon = len_of_regulon,
-                             all_genes = all_genes, 
-                             Gene_num = 500)
+MC_JSI_score_func_weight<- function(data_s1_sub = data_s1_sub,
+                                    tf_left_1 = tf_left_1,
+                                    len_of_regulon = len_of_regulon,
+                                    all_genes = all_genes, 
+                                    Gene_num = 500,
+                                    theta=0.5,
+                                    mi=1,
+                                    mo=1)
 
 ```
 
