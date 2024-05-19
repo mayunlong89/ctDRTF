@@ -194,7 +194,7 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 
 # Citation
 1. Ma et al., Systematic dissection of cell type-specific phenotype-relevant regulomes from single-cell transcriptomic and epigenomic atlases of human organoids, medRvix, 2024
-2. Ma et al. Integration of human organoids single-cell transcriptomic profiles and human genetics repurposes critical cell type-specific drug targets for severe COVID-19. [Cell Proliferation, 2023, e13558](https://onlinelibrary.wiley.com/doi/full/10.1111/cpr.13558), and see related [Github codes](https://github.com/mayunlong89/scHuman_organoids_COVID19).
+2. Ma et al. Integration of human organoids single-cell transcriptomic profiles and human genetics repurposes critical cell type-specific drug targets for severe COVID-19. [Cell Proliferation, 2024, e13558](https://onlinelibrary.wiley.com/doi/full/10.1111/cpr.13558), and see related [Github codes](https://github.com/mayunlong89/scHuman_organoids_COVID19).
 
 
 # scHOB Database
