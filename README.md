@@ -195,8 +195,13 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 ### Citation
 Ma et al., Systematic dissection of cell type-specific phenotype-relevant regulomes from single-cell transcriptomic and epigenomic atlases of human organoids, medRvix, 2024
 
+# scHOB Database
+scHOB (single-cell Human Organoid Bank) is a multi-omic single-cell database that consists of both scRNA-seq and scATAC-seq data on 10 kinds of widely-adopted human organoids (i.e., brain, lung, heart, eye, liver & bile duct, pancreas, intestine, kidney, and skin) spanning 1,366,380 cells with 67 main cell types in 385 samples across 83 distinct protocols. see [Github code](https://github.com/mayunlong89/scHOB/tree/main); see [scHOB Website](https://schob.su-lab.org/).
+The single-cell multiome data in scHOB have been used by ctDRTF, see Ma et al. 2024.
 
-
+# Other referecnes:
+[scPagwas](https://www.cell.com/cell-genomics/pdf/S2666-979X(23)00180-5.pdf)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8137370.svg)](https://doi.org/10.5281/zenodo.8137370)
 
 
 
