@@ -20,6 +20,7 @@ install_github("mayunlong89/ctDRTF")
 See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
 
 ## How to run ctDRTF
+```r
 #@' main function
 #@' single_cell: the input single-cell data.
 #@' n_genes: the minimum number of genes in a given regulon 
@@ -30,8 +31,6 @@ See the DESCRIPTION file for a complete list of R dependencies. If the R depende
 #@' theta range from 0.1 ~ 1, default set to 0.5
 #@' mi (power, or beta): expand the specificity difference between cell types,default set to 1
 #@' mode: mo=1 indicates use magma-based z-scores as weights; mo=0 indicates no weights
-
-```r
 
 ctdrtf <- function(single_cell = single_cell,
                    MAGMA_GWAS_data = MAGMA_GWAS_data,
