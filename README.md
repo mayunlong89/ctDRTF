@@ -28,7 +28,7 @@ See the DESCRIPTION file for a complete list of R dependencies. If the R depende
 #@' Gene_num: The number of disease-specific genes, default set to 500
 #@' MC_num: Set 100 times of Monte Carlo simulation
 #@' theta range from 0.1 ~ 1, default set to 0.5
-#@' mi (power): expand the specificity difference between cell types,default set to 1
+#@' mi (power, or beta): expand the specificity difference between cell types,default set to 1
 #@' mode: mo=1 indicates use magma-based z-scores as weights; mo=0 indicates no weights
 
 ```r
