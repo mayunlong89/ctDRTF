@@ -192,7 +192,7 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 
 ````
 
-### Citation
+# Citation
 Ma et al., Systematic dissection of cell type-specific phenotype-relevant regulomes from single-cell transcriptomic and epigenomic atlases of human organoids, medRvix, 2024
 
 # scHOB Database
