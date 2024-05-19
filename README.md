@@ -1,18 +1,21 @@
 # ctDRTF
-A computational method for identifying cell type-specific transcription factor relevant to complex disease.
+A computational method for identifying cell type-specific transcription factor-regulatory programs relevant to complex disease.
 
+![logo](https://github.com/mayunlong89/ctDRTF/blob/main/example/figure/Picture2.png)
 
-We assume that if GWAS-identified disease-specific genes are concordantly activated in a cell type-specific TF-regulon, then the TF is more likely to have a pivotal role in disease via the given cell type. Thus, we design a computational framework ctDRTF (cell type-specific Disease-Relevant Transcription Factor) for performing regulatory network-based inference of the associations between TF-related regulons and disease-specific gene sets in a context-specific manner. The input of scDRTF includes multimodal matrix of both scRNA-seq and scATAC-seq data, and GWAS summary data for a quantitative trait or disease (case-control study). 
+ctDRTF assumes that if GWAS-identified disease-specific genes are concordantly activated in a cell type-specific TF-regulon, then the TF is more likely to have a pivotal role in disease via the given cell type. Thus, the computational framework ctDRTF (cell type-specific Disease-Relevant Transcription Factor) is designed for performing regulatory network-based inference of the associations between TF-related regulons and disease-specific gene sets in a context-specific manner. The input of scDRTF includes multimodal matrix of both scRNA-seq and scATAC-seq data, and GWAS summary data for a quantitative trait or disease (case-control study). 
 
-![Workflow](https://github.com/mayunlong89/ctDRTF_analysis_codes/blob/main/figures_1/Figure%204.png)
+![Workflow](https://github.com/mayunlong89/ctDRTF/blob/main/example/figure/ctDRTF_workflow_only.png)
 
 
 # Installing ctDRTF
 We recommend installing ctDRTF via github using devtools:
 
-```
+```r
+
 library(devtools)
 install_github("mayunlong89/ctDRTF")
+
 ```
 See the DESCRIPTION file for a complete list of R dependencies. If the R dependencies are already installed, installation should finish in a few minutes.
 
@@ -26,7 +29,7 @@ See the DESCRIPTION file for a complete list of R dependencies. If the R depende
 #theta range from 0 ~ 1, default set to 0.5.
 #mode: default "weight", alternatively, "none"; This parameter is used the z-score of each gene from magma as weight.
 
-```
+```r
 
 ctdrtf <- function(single_cell = single_cell,
                            MAGMA_GWAS_data = MAGMA_GWAS_data,
@@ -38,8 +41,21 @@ ctdrtf <- function(single_cell = single_cell,
 
 ```
 
+
+| Function                           | Description                                                                                                                 |
+|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `sccomp_estimate`                  | Fit the model onto the data, and estimate the coefficients                                                                  |
+| `sccomp_remove_outliers`           | Identify outliers probabilistically based on the model fit, and exclude them from the estimation                            |
+| `sccomp_test`                      | Calculate the probability that the coefficients are outside the H0 interval (i.e. test_composition_above_logit_fold_change) |
+| `sccomp_replicate`                 | Simulate data from the model, or part of the model                                                                          |
+| `sccomp_predict`                   | Predicts proportions, based on the mode, or part of the model                                                               |
+| `sccomp_remove_unwanted_variation` | Removes the variability for unwanted factors                                                                                |
+| `plot`                             | Plors summary plots to asses significance                                                                                   |
+
+
+
 ### The ctDRTF pipeline             
-```
+```r
 # Step 1
 ##@ 1) Constructing global TF-gene regulatory network
 ##single_cell: the input single-cell data--Seurat object.
@@ -101,7 +117,7 @@ MC_JSI_score_func(data_s1_sub = data_s1_sub,
 
 ## Assigning cell types to single-cell data
 
-```
+```r
 
 Idents(single_cell) <- single_cell$cell_type
 
@@ -109,7 +125,7 @@ Idents(single_cell) <- single_cell$cell_type
 
 ### Generate MAGMA-based gene set
 
-```
+```shell
 1) MAGMA codes for generating disease-relevant genes
 
 #DIRECTORY
@@ -168,7 +184,7 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 ````
 
 ### Citation
-Ma et al., Unveiling cell type-specific transcriptional regulomes from single-cell transcriptomic and epigenomic atlas of human organoids, medRvix, 2024
+Ma et al., Systematic dissection of cell type-specific phenotype-relevant regulomes from single-cell transcriptomic and epigenomic atlases of human organoids, medRvix, 2024
 
 
 

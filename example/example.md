@@ -1,7 +1,7 @@
 
 # How to run example using ctDRTF
 
-```
+```r
 #Single-cell multi-omic data on pbmc_10x (Illumina Official Website)
 single_cell <- readRDS("pbmc_10x_example.rds")
 
@@ -9,7 +9,7 @@ single_cell <- readRDS("pbmc_10x_example.rds")
 magma_example <- readRDS("magma_example.rds")
 
 #running ctDRTF
-data_example <- ctdf_main_func(single_cell = single_cell,
+data_example <- ctdrtf(single_cell = single_cell,
                                MAGMA_GWAS_data = magma_example,
                                n_genes = 10,
                                Gene_num = 500,
@@ -21,7 +21,7 @@ data_example <- ctdf_main_func(single_cell = single_cell,
 
 ## Assigning cell types to single-cell data
 
-```
+```r
 
 Idents(single_cell) <- single_cell$cell_type
 
@@ -30,7 +30,7 @@ Idents(single_cell) <- single_cell$cell_type
 
 ### Generate MAGMA-based gene set
 
-```
+```shell
 1) MAGMA codes for generating disease-relevant genes
 
 #DIRECTORY
