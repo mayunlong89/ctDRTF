@@ -14,7 +14,9 @@ data_example <- ctdrtf(single_cell = single_cell,
                                n_genes = 10,
                                Gene_num = 500,
                                MC_num=1000,
-                               theta=0.5)
+                               theta=0.5,
+                                mi=1,
+                                mo=1)
 
 ```
 
