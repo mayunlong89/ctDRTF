@@ -173,7 +173,7 @@ COSR_func_weight <- function(tf_left=tf_left,
       #Interaction: specificity*JSI for each regulon-disease link
       ct_score <- regulon_s*JSI1
       
-      print(paste0("Regulon ",tf_left[j]," ctDRTF score is: ",ct_score, sep=""))
+      #print(paste0("Regulon ",tf_left[j]," ctDRTF score is: ",ct_score, sep=""))
       
       
       #MC simulation for random specificity*JSI scores
