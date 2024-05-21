@@ -195,13 +195,14 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 # Citation
 1. Ma et al., Integrating polygenic association signals and single-cell multiomic profiles to uncover cell type-specific regulons relevant to complex diseases, medRvix, 2024
 2. Ma et al., Sytematic characterization of pleiotropic loci and cell type-specific regulons involved in eight psychiatric disorders and five ocular diseases, medRvix, 2024.
-3. Ma et al., Integration of human organoids single-cell transcriptomic profiles and human genetics repurposes critical cell type-specific drug targets for severe COVID-19. [Cell Proliferation, 2024, e13558](https://onlinelibrary.wiley.com/doi/full/10.1111/cpr.13558), and see related [Github codes](https://github.com/mayunlong89/scHuman_organoids_COVID19).
 
 
 # scHOB Database
 scHOB (single-cell Human Organoid Bank) is a multi-omic single-cell database that consists of both scRNA-seq and scATAC-seq data on 10 kinds of widely-adopted human organoids (i.e., brain, lung, heart, eye, liver & bile duct, pancreas, intestine, kidney, and skin) spanning 1,366,380 cells with 67 main cell types in 385 samples across 83 distinct protocols. see [Github code](https://github.com/mayunlong89/scHOB/tree/main); see [scHOB Website](https://schob.su-lab.org/).
 The single-cell multiome data in scHOB have been used by ctDRTF, see Ma et al. 2024.
 
+# Application example:
+Ma et al., Integration of human organoids single-cell transcriptomic profiles and human genetics repurposes critical cell type-specific drug targets for severe COVID-19. [Cell Proliferation, 2024, e13558](https://onlinelibrary.wiley.com/doi/full/10.1111/cpr.13558), and see related [Github codes](https://github.com/mayunlong89/scHuman_organoids_COVID19).
 
 
 # Other referecnes:
