@@ -42,7 +42,7 @@ MC_JSI_score_func_weight<- function(data_s1_sub = data_s1_sub,
   #Curating one selected TF and genes for a random regulon
   regulon_genes_sample <- c(select_tf,sample_data$genes)
   
-  ##choose analysis mode: mode=1 using magma-derived z-score for genetic weights; alternatively, mode=0 with weights
+  ##choose analysis mode: mode=1 using magma-derived z-score for genetic weights; alternatively, mode=0 without weights
   ni = mo
   
   #Calculating the TF and targeting genes specificity score
