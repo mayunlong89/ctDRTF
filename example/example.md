@@ -25,7 +25,10 @@ data_example <- ctdrtf(single_cell = single_cell,
 
 ```r
 
+# assign cell types to single-cell data
+# or assign cell states to single-cell data
 Idents(single_cell) <- single_cell$cell_type
+
 
 ```
 
