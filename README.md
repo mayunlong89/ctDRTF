@@ -5,7 +5,7 @@ A network-based polygenic enrichment method for identifying cell type-specific t
 
 ctDRTF assumes that if GWAS-identified disease-specific genes are concordantly activated in a cell type-specific TF-regulon, then the TF is more likely to have a pivotal role in disease via the given cell type. Thus, the computational framework ctDRTF (cell type-specific Disease-Relevant Transcription Factor) is designed for performing regulatory network-based inference of the associations between TF-related regulons and disease-specific gene sets in a context-specific manner. The input of scDRTF includes multimodal matrix of both scRNA-seq and scATAC-seq data, and GWAS summary data for a quantitative trait or disease (case-control study). 
 
-![Workflow](https://github.com/mayunlong89/ctDRTF/blob/main/example/figure/Figure_1_v3_2.png)
+![Workflow](https://github.com/mayunlong89/ctDRTF/blob/main/example/Figure_1_v4.png)
 
 
 # Installing ctDRTF
