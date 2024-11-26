@@ -2,7 +2,7 @@
 A network-based polygenic enrichment method for identifying cell type-specific transcription factor-regulatory programs relevant to complex diseases.
 
 # ================================
-```R
+```r
 @ Latest version: v2.0.0 (2024-11-24: scMORE)
 @ Previous Versions:
     - v1.2.0 (2024-04-15: ctDRTF)
