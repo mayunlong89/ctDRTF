@@ -2,12 +2,12 @@
 A network-based polygenic enrichment method for identifying cell type-specific transcription factor-regulatory programs relevant to complex diseases.
 
 # ================================
-# @ Latest version: v2.0.0 (2024-11-24: scMORE)
-# @ Previous Versions:
-#   - v1.2.0 (2024-04-15: ctDRTF)
-#   - v1.1.1 (2024-03-15: ctDRTF)
-#   - v1.1.0 (2024-01-01: ctDRTF)
-#   - v1.0.0 (2023-11-03: ctDRTF)
+@ Latest version: v2.0.0 (2024-11-24: scMORE)
+@ Previous Versions:
+    - v1.2.0 (2024-04-15: ctDRTF)
+    - v1.1.1 (2024-03-15: ctDRTF)
+    - v1.1.0 (2024-01-01: ctDRTF)
+    - v1.0.0 (2023-11-03: ctDRTF)
 # -------------------------------
 
 ![logo](https://github.com/mayunlong89/ctDRTF/blob/main/example/figure/Picture1.png)
