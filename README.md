@@ -10,7 +10,7 @@ A network-based polygenic enrichment method for identifying cell type-specific t
     - v1.1.0 (2024-01-01: ctDRTF)
     - v1.0.0 (2023-11-03: ctDRTF)
 ```
-# -------------------------------
+# ================================
 
 ![logo](https://github.com/mayunlong89/ctDRTF/blob/main/example/figure/Picture1.png)
 
