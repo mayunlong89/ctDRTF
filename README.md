@@ -207,7 +207,6 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 
 # Citations
 1. Ma et al., Sytematic dissection of pleiotropic loci and critical regulons in exhibitory neurons and microglia relevant to neuropsychiatric and ocular diseases, Translational Psychiatry, 2025. preprint version see: [Research Square](https://www.researchsquare.com/article/rs-4514542/v1), 2024.
-2. Ma et al., Polygenic network enrichment identifies cellular context-specific regulons relevant to diseases by integration of single-cell multiomic data, `Genome Biology`,(under review), 2024
 
 
 # scHOB Database
