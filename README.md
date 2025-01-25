@@ -206,7 +206,7 @@ ctDRTF is fully compatiable with Seurat, a widely-used single-cell analysis tool
 ````
 
 # Citations
-1. Ma et al., Sytematic dissection of pleiotropic loci and critical regulons in exhibitory neurons and microglia relevant to neuropsychiatric and ocular diseases, Translational Psychiatry, 2025. preprint version see: [Research Square](https://www.researchsquare.com/article/rs-4514542/v1), 2024.
+1. Ma et al., Sytematic dissection of pleiotropic loci and critical regulons in exhibitory neurons and microglia relevant to neuropsychiatric and ocular diseases, [Translational Psychiatry](https://doi.org/10.1038/s41398-025-03243-4), 2025. preprint version see: [Research Square](https://www.researchsquare.com/article/rs-4514542/v1), 2024.
 
 
 # scHOB Database
