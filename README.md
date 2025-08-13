@@ -10,6 +10,10 @@ ctDRTF assumes that if GWAS-identified disease-specific genes are concordantly a
 ![Workflow](https://github.com/mayunlong89/ctDRTF/blob/main/example/figure/ctDRTF_framework.png)
 
 
+# ctDRTF method (previous version of scMORE)
+This method is designed to prioritize cell type-specific TF-regulons relevant to diseases of interest. ctDRTF is the older/legacy version of scMORE and is no longer maintained. The code is provided as is for reference only—use with caution. see [ctDRTF github](https://github.com/mayunlong89/ctDRTF). For up-to-date features, bug fixes, and support, please use scMORE instead. see [scMORE github](https://github.com/mayunlong89/scMORE).
+
+
 # ================================
 ```r
 @ Latest version: v2.0.0 (2024-11-24: scMORE)
